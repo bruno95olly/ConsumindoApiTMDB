@@ -1,0 +1,187 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+@font-face{
+    font-family: avengers;
+    src: url(avengeance.ttf);
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    color: #fff;
+    text-decoration: none;
+    font-family: Poppins, arial;
+}
+
+body{
+    background-color: #001328;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+header{
+    padding: 2% 6%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-family: avengers, poppins, arial;
+}
+main{
+    flex-grow: 1;
+}
+.pesquisa{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.pesquisa input{
+    width: 30%;
+    height: 40px;
+    margin-bottom: 25px;
+    border: none;
+    border-radius: 25px;
+    background-color: #dbdbdb;
+    padding: 1%;
+    outline: none;
+    color: black;
+}
+.galeria-container{
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    padding: 0px 2%;
+    width: 50%;
+    margin: auto;
+    flex-direction: column;
+
+}
+.galeria-itens{
+    height: 400px;
+    background-color: rgba(0, 0, 0, 0.534);
+    flex-grow: 1;
+    border: solid 3px #00003259;
+    border-radius: 20px;
+    overflow: hidden;
+
+}
+.galeria-itens img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: 1s;
+    border-radius: 16px;
+    filter: grayscale(1);
+
+}
+.galeria-itens img:hover{
+    transform: scale(1.2);
+    filter: grayscale(0);
+}
+footer{
+    padding: 3% 5%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1em;
+    font-weight: 200;
+}
+.slide{
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    background:  rgba(0, 0, 0, 0.534);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: -999;
+    opacity: 0;
+}
+.slide:target{
+    z-index: 999;
+    opacity: 1;
+    transition: all 0.5s;
+}
+.slide .navegacao{
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    background-color: #0a0a0aed;
+    z-index: 3;
+
+}
+.slide .anterior{
+    position: absolute;
+    left: 0;
+}
+.slide .proximo{
+    position: absolute;
+    right: 0;
+}
+.slide .imagem-container{
+    width: 80%;
+    height: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+.slide .imagem-container .fechar{
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 40px;
+    height: 40px;
+    background-color: #0a0a0aed;
+    display: flex;
+    border-radius: 50px;
+    justify-content: center;
+    font-size: 1.5rem;
+    align-items: center;
+    transition: all .5s ease;
+}
+.slide .imagem-container .fechar:hover{
+    background-color: #740000fc;
+}
+.slide .imagem-container img{
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+@media (max-width: 500px){
+    .pesquisa input{
+        width: 65%;
+        height: 40px;
+        border: none;
+        border-radius: 25px;
+        background-color: #dbdbdb;
+        padding: 4%;
+        outline: none;
+        color: black;
+    }
+    
+    .galeria-itens {
+        height: 375px;
+        background-color: rgba(0, 0, 0, 0.534);
+        flex-grow: 1;
+        border: solid 3px #00003259;
+        border-radius: 20px;
+        overflow: hidden;
+    }
+    .galeria-container {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+        padding: 0px 2%;
+        width: 75%;
+        margin: auto;
+        flex-direction: column;
+    }
+}
