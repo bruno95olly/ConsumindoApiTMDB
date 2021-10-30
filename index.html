@@ -3,24 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>API Tmdb</title>
+    <title>Document</title>
     <link rel="stylesheet" href="style.css">
     <script src="main.js" defer></script>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <!-- <link rel="stylesheet" href="jquery.fs.selecter.css"> -->
 </head>
 <body>
-    <header><h1>Pesquisa de Filmes com API tmdb</h1></header>
+    <header>
+        <nav>
+            <h1>ApiTmdb</h1>
+            <div class="containerPesquisa">
+                <ion-icon id="lupaPesquisar" class="iconPesquisa" name="search-outline"></ion-icon>
+                <input id="inputPesquisa" type="text" placeholder="Buscar">
+                <select class="selects "name="tipoPesquisa" id="">
+                    
+                </select>
+            </div>
+        </nav>
+        <img src="tmdb_logo.svg" alt="">
+    </header>
     <main>
-        <div class="pesquisa">
-            <input type="text" placeholder="Digite o nome de um filme">
-        </div>
-        <div class="galeria-container">
+        <div class="galeriaImagens">
             
-        </div>
-        <div class="slide-container">
         </div>
     </main>
     <footer>
-        <span>Copyright &copy; 2021 | Bruno Olly</span>
+        <span>Copyright &copy; By Bruno Olly</span>
     </footer>
+    <!-- <script src="jquery.js"></script>
+    <script src="jquery.fs.selecter.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $(".selects").selecter();
+        })
+    </script> -->
 </body>
 </html>
