@@ -1,6 +1,5 @@
 "use strict"
 
-
 const select = document.querySelector('.selects')
 const filme = "Filmes"
 const programas = "Programas de tv" 
@@ -17,7 +16,7 @@ select.innerHTML = `
 
 const apiTmdbFilmes = async (imagem) => {    
     const chaveApi = "?api_key=85653fd24a1dbf9eeb115a2828484764"
-    const url = `https://api.themoviedb.org/3/search/movie${chaveApi}&language=pt-BR&region=brazil&query=${imagem}`
+    const url = `https://api.themoviedb.org/3/search/movie${chaveApi}&language=pt-BR&region=brazil&sort_by=vote_average.asc&query=${imagem}`
     
     const response = await fetch(url)
     const imagensAchadas = await response.json()
@@ -27,7 +26,7 @@ const apiTmdbFilmes = async (imagem) => {
 
 const apiTmdbTv = async (imagem) => {    
     const chaveApi = "?api_key=85653fd24a1dbf9eeb115a2828484764"
-    const url = `https://api.themoviedb.org/3/search/tv${chaveApi}&language=pt-BR&region=brazil&query=${imagem}`
+    const url = `https://api.themoviedb.org/3/search/tv${chaveApi}&language=pt-BR&region=brazil&sort_by=vote_average.desc&query=${imagem}`
     
     const response = await fetch(url)
     const imagensAchadas = await response.json()
@@ -56,7 +55,7 @@ const apiDetalhesTv = async (id) => {
     const chaveApi = "?api_key=85653fd24a1dbf9eeb115a2828484764"
 
     //retorna a url de outra api do site com mais detalhes do filme
-    const urlDetalhes = `https://api.themoviedb.org/3/tv/${id}${chaveApi}&language=pt-BR`
+    const urlDetalhes = `https://api.themoviedb.org/3/tv/${id}${chaveApi}&language=pt-BR&region=brazil`
 
     //response da api
     const filmeDetalhes = await fetch (urlDetalhes)
@@ -81,15 +80,13 @@ const buscarImagensClick = async() => {
             const imagemPesquisa = document.querySelector('#inputPesquisa').value
             const infoImagens = await apiTmdbFilmes(imagemPesquisa)
             const arrayResultados = infoImagens.results
-            console.log(arrayResultados)
             limpaBusca(document.querySelector('.galeriaImagens'))
             carregarResultados(arrayResultados)
     }
     else if(valueOption == programas){
-            const imagemPesquisa = evento.target.value
+            const imagemPesquisa = document.querySelector('#inputPesquisa').value
             const infoImagens = await apiTmdbTv(imagemPesquisa)
             const arrayResultados = infoImagens.results
-            console.log(arrayResultados)
             limpaBusca(document.querySelector('.galeriaImagens'))
             carregarResultados(arrayResultados)
     }
@@ -106,7 +103,6 @@ const buscarImagens = async(evento) => {
             const imagemPesquisa = evento.target.value
             const infoImagens = await apiTmdbFilmes(imagemPesquisa)
             const arrayResultados = infoImagens.results
-            console.log(arrayResultados)
             limpaBusca(document.querySelector('.galeriaImagens'))
             carregarResultados(arrayResultados)
         }   
@@ -116,7 +112,6 @@ const buscarImagens = async(evento) => {
             const imagemPesquisa = evento.target.value
             const infoImagens = await apiTmdbTv(imagemPesquisa)
             const arrayResultados = infoImagens.results
-            console.log(arrayResultados)
             limpaBusca(document.querySelector('.galeriaImagens'))
             carregarResultados(arrayResultados)
         }
@@ -131,6 +126,10 @@ const criaCard = async (elemento, indice, array) => {
 var valueOption = select.options[select.selectedIndex].text
 
     if(valueOption == filme){
+
+        const dateFilme = elemento.release_date
+
+        var data = dateFilme.split('-').reverse().join('-');
         
         //retorna o id do filme
         const filmeId = elemento.id 
@@ -153,15 +152,22 @@ var valueOption = select.options[select.selectedIndex].text
         const novaDiv = document.createElement("div")
         novaDiv.classList.add("card-imagem")
         novaDiv.innerHTML = 
-        `<img src="${filmeImagem}">
+        `<img src="${filmeImagem}" alt="Esse filme não contem uma imagem">
         <h3 class="descTitulo">${elemento.title}</h3>
         <span class="descImg">
             Generos: ${generos}
-        </span>        
+        </span>
+        <span class="descImg">
+            Lançado em: ${data}
+        </span>         
         `
         container.appendChild(novaDiv)
     }
     else if(valueOption == programas){
+
+        const dateTv = elemento.first_air_date
+
+        const data = dateTv.split('-').reverse().join('-');
         const TvId = elemento.id 
         const infoTv = await apiDetalhesTv(TvId)
 
@@ -179,11 +185,14 @@ var valueOption = select.options[select.selectedIndex].text
         const novaDiv = document.createElement("div")
         novaDiv.classList.add("card-imagem")
         novaDiv.innerHTML = 
-        `<img src="${TvImagem}">
+        `<img class="imgTvs" src="${TvImagem}" alt="Esse programa de tv não contem uma imagem" style="color: white; min-height: 380px; text-align: center;">
         <h3 class="descTitulo">${elemento.name}</h3>
         <span class="descImg">
             Generos: ${generos}
         </span>        
+        <span class="descImg">
+            Lançado em: ${data}
+        </span>  
         `
         container.appendChild(novaDiv)
     }

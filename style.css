@@ -28,8 +28,12 @@ header nav h1{
     margin-right: 10%;
     color: #e5e5e5;
 }
-header img{
+header a{
     width: 15%;
+    display: flex;
+}
+header img{
+    width: 100%;
 }
 .selects{
     outline: none;
@@ -100,6 +104,9 @@ main{
     height: 78%;
     width: 100%;
     transition: .5s;
+    color: white; 
+    min-height: 380px; 
+    text-align: center;
 }
 .card-imagem img:hover{
     filter: brightness(0.5);
@@ -130,8 +137,13 @@ footer{
     header nav h1{
        display: none;
     }
-    header img{
+    header a{
         width: 20%;
+        display: flex;
+    }
+    header img{
+        width: 100%;
+        
     }
     .selects{
         outline: none;
@@ -186,6 +198,8 @@ footer{
         font-size: .9em;
         transition: .8s;
     }
+
+
     
     .descImg{
         display: block;
@@ -205,6 +219,9 @@ footer{
         height: 83%;
         width: 100%;
         transition: .5s;
+        color: white; 
+        min-height: 83%; 
+        text-align: center;
     }
     .card-imagem img:hover{
         filter: brightness(0.5);
